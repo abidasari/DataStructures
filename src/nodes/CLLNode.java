@@ -13,6 +13,7 @@ public class CLLNode<T>{
 
     public CLLNode(T data) {
         this.data = data;
+        next = null;
     }
 
     public T getData() {
