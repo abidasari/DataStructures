@@ -14,6 +14,18 @@ public class SingleLinkList<T>{
         return head;
     }
 
+    public void setHead(SLLNode<T> head) {
+        this.head = head;
+    }
+
+    public int getLength() {
+        return length;
+    }
+
+    public void setLength(int length) {
+        this.length = length;
+    }
+
     public void insertAtBegin(T data){
         SLLNode<T> node = new SLLNode<T>();
         node.setData(data);
