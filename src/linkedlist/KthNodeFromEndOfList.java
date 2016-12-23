@@ -9,7 +9,7 @@ import nodes.SLLNode;
 public class KthNodeFromEndOfList<T>{
 
     public T kthNodeFromEndOfListBrute(SingleLinkList<T> list, int k){ // k'th node from end is n - k + 1'th term from the front
-        SLLNode<T> temp = list.getHead();
+        SLLNode<T> temp = list.getHead();                              // Here finding the length would require another pass if we didn't keep track of the list length.
         for(int i = 0; i < list.getLength() - k ; i++ ){
             if(temp.getNext() != null)
                 temp = temp.getNext();
@@ -19,7 +19,7 @@ public class KthNodeFromEndOfList<T>{
         return temp.getData();
     }
 
-    public T kthNodeFromEndOfListSinglePass(SingleLinkList<T> list, int k){
+    public T kthNodeFromEndOfListSinglePass(SingleLinkList<T> list, int k){ //No need to use the length of the list.
         SLLNode<T> first = list.getHead();
         SLLNode<T> second = list.getHead();
         int i = 0;
