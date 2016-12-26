@@ -19,7 +19,7 @@ public class KthNodeFromEndOfList<T>{
         return temp.getData();
     }
 
-    public T kthNodeFromEndOfListSinglePass(SingleLinkList<T> list, int k){ //No need to use the length of the list.
+    public T kthNodeFromEndOfListSinglePass(SingleLinkList<T> list, int k){ //No need to use the length of the list here. An extra pointer initialized k-2 nodes ahead of the head will do.
         SLLNode<T> first = list.getHead();
         SLLNode<T> second = list.getHead();
         int i = 0;
