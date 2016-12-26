@@ -64,14 +64,12 @@ public class LoopDetection<T>{
             }
         }
         if(loopExists){
-            SLLNode<T> prev = null;
             slow = list.getHead();
             while(slow != fast){
-                prev = fast;
                 slow = slow.getNext();
                 fast = fast.getNext();
             }
-            return prev;
+            return fast;
         } else
             return null;
     }
