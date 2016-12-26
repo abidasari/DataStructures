@@ -6,7 +6,10 @@ package linkedlist;
 
 import nodes.SLLNode;
 
+
+
 public class SingleLinkList<T>{
+
     private SLLNode<T> head;
     private int length = 0;
 
@@ -137,6 +140,18 @@ public class SingleLinkList<T>{
         head = current;
     }
 
+    public SLLNode<T> reverseRecursive(SLLNode<T> current, SLLNode<T> prev){
+        if(current.getNext() == null){
+            head = current;
+            current.setNext(prev);
+            return current;
+        }
+        SLLNode<T> next = current.getNext();
+        current.setNext(prev);
+        reverseRecursive(next, current);
+        return head;
+    }
+
     public int size(){
         int size = 0;
         if(head == null)
@@ -175,6 +190,8 @@ public class SingleLinkList<T>{
 
     public static void main(String[] args){
         SingleLinkList<Integer> list = new SingleLinkList<Integer>();
+        SingleLinkList<Integer> sortedList = new SingleLinkList<Integer>();
+
 
         list.insertAtBegin(3);
         list.insertAtBegin(4);
@@ -186,8 +203,25 @@ public class SingleLinkList<T>{
         list.deleteFromBegin();
         list.reverse();
 
+
+        sortedList.insertAtBegin(99);
+        sortedList.insertAtBegin(88);
+        sortedList.insertAtBegin(77);
+        sortedList.insertAtBegin(66);
+        sortedList.insertAtBegin(55);
+        sortedList.insertAtBegin(44);
+
+
         System.out.println(list);
+
         System.out.println("Size: " + list.size());
         System.out.println("Size Recursive: " + list.sizeRecursive(list.getHead()));
+
+        System.out.println("Reverse Recursive: ");
+        list.reverseRecursive(list.getHead(), null);
+        System.out.println(list);
+
+//        System.out.println(sortedList);
+//        System.out.println("Insert 34 into sorted list: " + list.insertInSortedList(34));
     }
 }
