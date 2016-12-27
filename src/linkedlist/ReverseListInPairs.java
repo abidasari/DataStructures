@@ -8,7 +8,7 @@ import nodes.SLLNode;
 
 public class ReverseListInPairs<T> {
 
-    public SLLNode<T> reverseInPairsIterative(SLLNode<T> head){
+    public SLLNode<T> reverseInPairsIterativeMethodOne(SLLNode<T> head){
         if(head.getNext() == null)
             return head;
         SLLNode<T> h = null, curr = head.getNext(), prev = head;
@@ -35,6 +35,21 @@ public class ReverseListInPairs<T> {
         return h;
     }
 
+    public SLLNode<T> reverseInPairsIterativeMethodTwo(SLLNode<T> head){
+        SLLNode<T> node = new SLLNode<T>(), prev = null, curr = head, next = null;
+        node.setNext(head);
+        prev = node;
+        while(curr != null && curr.getNext() != null){
+            next = curr.getNext().getNext();
+            curr.getNext().setNext(prev.getNext());
+            prev.setNext(curr.getNext());
+            curr.setNext(next);
+            prev = curr;
+            curr = next;
+        }
+        return node.getNext();
+    }
+
     public SLLNode<T> reverseInPairsRecursive(SLLNode<T> head){
         SLLNode<T> temp = null;
         if(head == null || head.getNext() == null)
@@ -52,7 +67,7 @@ public class ReverseListInPairs<T> {
     public static void main(String[] args) {
         SingleLinkList<Integer> list = new SingleLinkList<Integer>();
         ReverseListInPairs<Integer> obj = new ReverseListInPairs<Integer>();
-//        list.insertAtBegin(7);
+        list.insertAtBegin(7);
         list.insertAtBegin(8);
         list.insertAtBegin(6);
         list.insertAtBegin(5);
@@ -64,7 +79,7 @@ public class ReverseListInPairs<T> {
 
 
         SingleLinkList<Integer> pairReverseList = new SingleLinkList<Integer>();
-        pairReverseList.setHead(obj.reverseInPairsRecursive(list.getHead()));
+        pairReverseList.setHead(obj.reverseInPairsIterativeMethodTwo(list.getHead()));
 
         System.out.println("Pair reversed list : " + pairReverseList + " Size: " + pairReverseList.size());
 
