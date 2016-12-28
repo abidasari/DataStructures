@@ -8,7 +8,9 @@ import nodes.SLLNode;
 
 public class PalindromeList<T extends Number>{
 
-    public boolean isAPalindrome(SLLNode<T> head){
+    SLLNode<T> left;
+
+    public boolean isAPalindromeIterative(SLLNode<T> head){
         if(head == null)
             return false;
         SLLNode<T> fast = head, slow = head, tempHead = null;
@@ -30,6 +32,25 @@ public class PalindromeList<T extends Number>{
         }
         reconstruct(head, tempHead);
         return true;
+    }
+
+    public boolean isAPalindromeRecursive(SLLNode<T> right, SingleLinkList<T> list){
+        left = list.getHead();
+        if(right == null)
+            return true;
+
+        boolean isp = isAPalindromeRecursive(right.getNext(), list);
+        if(isp == false)
+            return false;
+        boolean isp1 = (right.getData() == left.getData());
+
+        left = left.getNext();
+        return isp1;
+    }
+
+    public boolean isAPalindromeRecursiveUtil(SLLNode<T> head, SingleLinkList<T> list){
+        boolean res = isAPalindromeRecursive(head, list);
+        return res;
     }
 
     public void reconstruct(SLLNode<T> head1, SLLNode<T> head2){
@@ -71,13 +92,13 @@ public class PalindromeList<T extends Number>{
         list.insertAtBegin(7);
         list.insertAtBegin(6);
         list.insertAtBegin(5);
-        list.insertAtBegin(60);
+        list.insertAtBegin(6);
         list.insertAtBegin(7);
         list.insertAtBegin(8);
 
         System.out.println("List : " + list + " Size: " + list.size());
 
-        System.out.println("List is palindrome: " + obj.isAPalindrome(list.getHead()));
+        System.out.println("List is palindrome: " + obj.isAPalindromeRecursiveUtil(list.getHead(), list));
 
         System.out.println("List : " + list + " Size: " + list.size());
 
