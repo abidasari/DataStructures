@@ -35,12 +35,30 @@ public class ModularNode<T> {
         return out;
     }
 
+    public SLLNode<T> findNbyKthNode(SLLNode<T> head, int k){
+        if(head == null || k < 0)
+            return null;
+        SLLNode<T> fast = head, slow = null; // for every k advances of fast pointer advance slow by one node.
+        int i = 1;
+        while(fast != null){
+            if(i % k == 0){
+                if(slow == null)
+                    slow = head;
+                else
+                    slow = slow.getNext();
+            }
+            fast = fast.getNext();
+            i++;
+        }
+        return slow;
+    }
+
     public static void main(String[] args) {
         SingleLinkList<Integer> list = new SingleLinkList<Integer>();
         ModularNode<Integer> obj = new ModularNode<>();
-        for(int i = 19; i >= 1; i--)
+        for(int i = 6; i >= 1; i--)
             list.insertAtBegin(i);
         System.out.println(list);
-        System.out.println("Modular Node is [ " + obj.findModularNodeFromEnd(list.getHead(), 3).getData() + " ]");
+        System.out.println("Modular Node is [ " + obj.findNbyKthNode(list.getHead(), 3).getData() + " ]");
     }
 }
