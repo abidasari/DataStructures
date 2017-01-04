@@ -72,6 +72,7 @@ public class CircularLinkedList<T>{
         length++;
     }
 
+
     public T deleteAtStart(){
         T out;
         if(tail == null)
@@ -150,9 +151,15 @@ public class CircularLinkedList<T>{
         list.insertAtStart(13);
         list.insertAtStart(14);
         list.insertAtStart(15);
-        list.insertAtStart(16);
+        CLLNode<Integer> arb = list.getTail().getNext();
+//        list.insertAtStart(16);
         list.insertAtStart(17);
         list.insertAtStart(18);
+
+        System.out.println(list);
+        System.out.println("Tail: " + list.getTail().getData() + "  Length: " + list.getLength());
+
+//        list.insertInSortedCLL(arb, 16);
 
         System.out.println(list);
         System.out.println("Tail: " + list.getTail().getData() + "  Length: " + list.getLength());
@@ -167,9 +174,9 @@ public class CircularLinkedList<T>{
         System.out.println(list);
         System.out.println("Tail: " + list.getTail().getData() + "  Length: " + list.getLength());
 
-        System.out.println("Deleted form start: " + list.deleteAtStart());
-        System.out.println("Deleted form end: " + list.deleteAtEnd());
-        System.out.println("Deleted form index: " + list.deleteAtIndex(3));
+//        System.out.println("Deleted form start: " + list.deleteAtStart());
+//        System.out.println("Deleted form end: " + list.deleteAtEnd());
+//        System.out.println("Deleted form index: " + list.deleteAtIndex(3));
 
         System.out.println(list);
     }
