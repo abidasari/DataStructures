@@ -50,6 +50,26 @@ public class ReverseListInPairs<T> {
         return node.getNext();
     }
 
+    public SLLNode<T> reverseHalfLinkedList(SLLNode<T> head){
+        SLLNode<T> slow = head, fast = head, tempHead = head;
+        while(fast.getNext() != null && fast.getNext().getNext() != null){
+            fast = fast.getNext().getNext();
+            slow = slow.getNext();
+        }
+        fast = slow.getNext();
+        slow.setNext(null);
+        SLLNode<T> dummy = null, next;
+        while(fast.getNext() != null){
+            next = fast.getNext();
+            fast.setNext(dummy);
+            dummy = fast;
+            fast = next;
+        }
+        fast.setNext(dummy);
+        slow.setNext(fast);
+        return tempHead;
+    }
+
     public SLLNode<T> reverseInPairsRecursive(SLLNode<T> head){
         SLLNode<T> temp = null;
         if(head == null || head.getNext() == null)
@@ -79,7 +99,7 @@ public class ReverseListInPairs<T> {
 
 
         SingleLinkList<Integer> pairReverseList = new SingleLinkList<Integer>();
-        pairReverseList.setHead(obj.reverseInPairsIterativeMethodTwo(list.getHead()));
+        pairReverseList.setHead(obj.reverseHalfLinkedList(list.getHead()));
 
         System.out.println("Pair reversed list : " + pairReverseList + " Size: " + pairReverseList.size());
 
