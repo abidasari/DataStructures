@@ -82,15 +82,15 @@ public class LinkedListInsertionSort<T extends Number> {
         SingleLinkList<Integer> list = new SingleLinkList<Integer>();
         LinkedListInsertionSort<Integer> obj = new LinkedListInsertionSort<>();
 
-//        list.insertAtBegin(11);
-//        list.insertAtBegin(12);
-//        list.insertAtBegin(13);
-//        list.insertAtBegin(12);
-//        list.insertAtBegin(56);
+        list.insertAtBegin(11);
+        list.insertAtBegin(12);
+        list.insertAtBegin(13);
+        list.insertAtBegin(12);
+        list.insertAtBegin(56);
         list.insertAtBegin(21);
         list.insertAtBegin(9);
-//        list.insertAtBegin(23);
-//        list.insertAtEnd(14);
+        list.insertAtBegin(23);
+        list.insertAtEnd(14);
 
 
         System.out.println("List : " + list + " Size: " + list.size());
