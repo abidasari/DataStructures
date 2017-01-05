@@ -70,8 +70,11 @@ public class FixedSizeArrayStack{
     @Override
     public String toString(){
         String out = "[ ";
-        for(int i = 0; i <= top; i++)
+        int i = 0;
+        for(; i <= top; i++)
             out += stack[i] + " ";
+        for(; i < capacity; i++)
+            out += "_ ";
         return out + "]";
     }
 
