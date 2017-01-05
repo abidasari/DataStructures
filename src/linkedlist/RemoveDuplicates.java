@@ -6,9 +6,13 @@ package linkedlist;
 
 import nodes.SLLNode;
 
+import java.util.HashMap;
+import java.util.Map;
+
+
 public class RemoveDuplicates<T>{
 
-    public void removeDuplicates(SLLNode<T> head){
+    public void removeDuplicates(SLLNode<T> head){ // O(n^2)
         if(head == null || head.getNext() == null)
             return;
         SLLNode<T> temp = head, prev = null, temp2 = head;
@@ -20,6 +24,22 @@ public class RemoveDuplicates<T>{
                     prev.setNext(temp2.getNext());
                 prev = temp2;
                 temp2 = temp2.getNext();
+            }
+            temp = temp.getNext();
+        }
+    }
+
+    public void removeDuplicatesHashTable(SLLNode<T> head){
+        if(head == null || head.getNext() == null)
+            return;
+        Map<T, Boolean> mapper = new HashMap<>();
+        SLLNode<T> temp = head, prev = null;
+        while(temp != null) {
+            if (mapper.get(temp.getData()) != null) {
+                prev.setNext(temp.getNext());
+            } else {
+                mapper.put(temp.getData(), true);
+                prev = temp;
             }
             temp = temp.getNext();
         }
@@ -45,13 +65,14 @@ public class RemoveDuplicates<T>{
         list.insertAtBegin(13);
         list.insertAtBegin(12);
         list.insertAtBegin(11);
+        list.insertAtBegin(11);
         list.insertAtBegin(21);
         list.insertAtBegin(9);
         list.insertAtBegin(9);
         list.insertAtEnd(14);
 
         System.out.println("List : " + list + " Size: " + list.size());
-        obj.removeDuplicates(list.getHead());
+        obj.removeDuplicatesHashTable(list.getHead());
         System.out.println("Duplicates removed : " + obj.printList(list.getHead()));
 
     }
