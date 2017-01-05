@@ -20,9 +20,9 @@ public class AddTwoNumbersAsLists<T extends Number>{
             int sum = pointer1.getData().intValue() + pointer2.getData().intValue() + carry;
             carry = sum / 10;
             if(newHead == null) {
-                newHead = new SLLNode<Integer>(sum % 10);;
+                newHead = new SLLNode<Integer>(sum % 10);
             } else {
-                outListTail.setNext(new SLLNode<Integer>(sum % 10););
+                outListTail.setNext(new SLLNode<Integer>(sum % 10));
             }
             outListTail = outListTail.getNext();
             pointer1 = pointer1.getNext();
