@@ -16,31 +16,48 @@ public class InfixEvaluation {
 
         String[] tokens = s.split(" ");
 
-        for(token: tokens){
-            if(token == "("){
+        for(String token: tokens){
+            if(token.equals("(")){
+                System.out.println("got ( push to stack.");
                 operatorStack.push(token.charAt(0));
-            } else if(token == ")") {
+            } else if(token.equals(")")) {
+                System.out.println("got ) pop till (");
+
                 while(operatorStack.peek() != '('){
                     char operator = operatorStack.pop();
                     int a = valueStack.pop(), b = valueStack.pop(), c;
+                    System.out.println("  popped a: " + a + " b: " + b + " on operator: " + operator);
                     c = calculate(operator, a, b);
-                    operatorStack.push(c);
+                    System.out.println("  pushing c: " + c);
+                    valueStack.push(c);
                 }
                 operatorStack.pop(); // remove the '('
-            } else if(token == "*" || token == "/" || token == "+" || token == "-"){
-                while(!operatorStack.isEmpty() && operatorStack.peek() != '(' && rank(operatorStack.peek()) < rank(token.charAt(0))){
+            } else if(token.equals("*") || token.equals("/") || token.equals("+") || token.equals("-")){
+                System.out.println("got an operator: " + token);
+                while(!operatorStack.isEmpty() && operatorStack.peek() != '(' && rank(operatorStack.peek()) > rank(token.charAt(0))){
                     char operator = operatorStack.pop();
                     int a = valueStack.pop(), b = valueStack.pop(), c;
+                    System.out.println("  -popped a: " + a + " b: " + b + " on operator: " + operator);
                     c = calculate(operator, a, b);
-                    operatorStack.push(c);
+                    System.out.println("  -pushing c: " + c);
+                    valueStack.push(c);
                 }
                 operatorStack.push(token.charAt(0));
             } else { //operand
+                System.out.println("got an operand: " + token);
                 int val = Integer.parseInt(token);
                 valueStack.push(val);
             }
         }
-        return valueStack.pop()
+        while(!operatorStack.isEmpty()){
+            char operator = operatorStack.pop();
+            int a = valueStack.pop(), b = valueStack.pop(), c;
+            System.out.println("      popped a: " + a + " b: " + b + " on operator: " + operator);
+            c = calculate(operator, a, b);
+            System.out.println("      pushing c: " + c);
+            valueStack.push(c);
+        }
+        return valueStack.pop();
     }
 
     public int rank(char s){
@@ -66,6 +83,10 @@ public class InfixEvaluation {
     }
 
     public static void main(String[] args) {
+        InfixEvaluation obj = new InfixEvaluation();
+//        String b = "4 * 1 - ( 3 + 18 ) + 9";
+        String b = "4 * 1 - ( 50 )";
 
+        System.out.println("Value of " + b + " is :  " + obj.evaluateInfixExpression(b));
     }
 }
