@@ -35,6 +35,8 @@ public class CheckPalindrome {
                 return false;
             i++;
         }
+        if(i != input.length() - 1)
+            return false;
         return true;
     }
 
