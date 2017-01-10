@@ -1,5 +1,7 @@
 package queue;
 
+import java.util.Stack;
+
 /**
  * @author adasari
  */
@@ -90,6 +92,16 @@ public class FixedArrayCircularQueue{
         }
     }
 
+    public void reverse() throws Exception{
+        if(front == -1)
+            return;
+        Stack<Object> stack = new Stack<>();
+        while(!this.isEmpty())
+            stack.push(this.deQueue());
+        while(!stack.isEmpty())
+            this.enQueue(stack.pop());
+    }
+
     public boolean isEmpty(){
         return (size == 0);
     }
@@ -116,15 +128,21 @@ public class FixedArrayCircularQueue{
             obj.enQueue(7);
             obj.enQueue(4);
             obj.enQueue(1);
-            obj.deQueue();
-            obj.deQueue();
-            obj.deQueue();
-            obj.deQueue();
-            obj.deQueue();
+//            obj.deQueue();
+//            obj.deQueue();
+//            obj.deQueue();
+//            obj.deQueue();
+//            obj.deQueue();
             obj.enQueue(99);
             obj.enQueue(21);
 
             System.out.println(obj);
+            obj.reverse();
+            System.out.println(obj);
+            obj.deQueue();
+            System.out.println(obj);
+
+
         } catch(Exception e){
             System.out.println(e);
         }
