@@ -47,6 +47,10 @@ public class FixedSizeArrayStack{
         return (top < 0);
     }
 
+    public boolean isFull() {
+        return (top == capacity-1) ? true : false;
+    }
+
     public void push(Object data) throws Exception{
         if(size() == capacity)
             throw new Exception("Stack is Full!!");
