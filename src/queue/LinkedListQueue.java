@@ -42,13 +42,15 @@ public class LinkedListQueue<T> {
     }
 
     public void enQueue(T data) {
-        queue.insertAtBegin(data);
+        queue.insertAtEnd(data);
+        rear = rear.getNext();
     }
 
     public T deQueue() throws Exception{
-        T out = queue.deleteFromEnd();
+        T out = queue.deleteFromBegin();
         if(out == null)
             throw new Exception("Queue is empty!!");
+        front = queue.getHead();
         return out;
     }
 
