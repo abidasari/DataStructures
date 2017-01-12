@@ -21,6 +21,25 @@ public class SearchTree<T extends Number>{
         return searchTreeFor(node.getLeft(), k) || searchTreeFor(node.getRight(), k);
     }
 
+    public boolean searchTreeForIterative(BTNode<T> node, int k){
+        boolean found = false;
+        if(node != null){
+            Queue<BTNode<T>> queue = new LinkedList<>();
+            BTNode<T> curr = null;
+            queue.offer(node);
+            while(!queue.isEmpty()){
+                curr = queue.poll();
+                if(curr.getData().intValue() == k)
+                    found = true;
+                if(curr.getLeft() != null)
+                    queue.offer(curr.getLeft());
+                if(curr.getRight() != null)
+                    queue.offer(curr.getRight());
+            }
+        }
+        return found;
+    }
+
     public static void main(String[] args){
         SearchTree<Integer> obj = new SearchTree<>();
         BinaryTree<Integer> tree= new BinaryTree<>();
@@ -37,6 +56,6 @@ public class SearchTree<T extends Number>{
         tree.getRoot().getRight().getLeft().setRight(new BTNode<Integer>(9));
         tree.print2D();
 
-        System.out.println("Element found: " + obj.searchTreeFor(tree.getRoot(), 8));
+        System.out.println("Element found: " + obj.searchTreeForIterative(tree.getRoot(), 0));
     }
 }
