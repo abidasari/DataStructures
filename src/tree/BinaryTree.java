@@ -53,6 +53,30 @@ public class BinaryTree<T>{
         }
     }
 
+    public int treeSize(BTNode<T> node){
+        int leftCount = (node.getLeft() == null) ? 0 : treeSize(node.getLeft());
+        int rightCount = (node.getRight() == null) ? 0 : treeSize(node.getRight());
+        return leftCount + rightCount + 1;
+    }
+
+    public int treeSizeIterative(BTNode<T> node){
+        int size = 0;
+        if(node != null){
+            Queue<BTNode<T>> queue = new LinkedList<>();
+            BTNode<T> curr = null;
+            queue.offer(node);
+            while(!queue.isEmpty()){
+                curr = queue.poll();
+                size ++;
+                if(curr.getLeft() != null)
+                    queue.offer(curr.getLeft());
+                if(curr.getRight() != null)
+                    queue.offer(curr.getRight());
+            }
+        }
+        return size;
+    }
+
     public void print2DUtil(BTNode<T> root, int space)
     {
         if (root == null)
@@ -202,7 +226,7 @@ public class BinaryTree<T>{
         obj.insert(3);
         obj.insert(4);
         obj.insert(5);
-        obj.insert(6);
+//        obj.insert(6);
         obj.insert(7);
         obj.getRoot().getLeft().getRight().setLeft(new BTNode<Integer>(8));
         obj.getRoot().getRight().getLeft().setRight(new BTNode<Integer>(9));
@@ -210,6 +234,8 @@ public class BinaryTree<T>{
 
         obj.print2D();
         System.out.println(obj.levelOrderTraversal(obj.getRoot()));
+        System.out.println("Tree size: " + obj.treeSizeIterative(obj.getRoot()));
+
 //        obj.postOrderTraversalRecursive(obj.getRoot());
     }
 
