@@ -199,7 +199,7 @@ public class BinaryTree<T>{
         return out + "]";
     }
 
-    public String levelOrderTraversal(BTNode<T> node){
+    public String levelOrderTraversalQueue(BTNode<T> node){
         if(node == null)
             return "";
         Queue<BTNode<T>> queue = new LinkedList<>();
@@ -215,6 +215,39 @@ public class BinaryTree<T>{
                 queue.offer(currNode.getRight());
         }
         return out + "]";
+    }
+
+    public int height(BTNode<T> node){
+        if(node == null)
+            return 0;
+        if(node.getLeft() == null && node.getRight() == null)
+            return 1;
+        return 1 + (height(node.getLeft()) > height(node.getRight()) ? height(node.getLeft()) : height(node.getRight()));
+    }
+
+    public void levelOrderTraversal(BTNode<T> node){
+        if(node == null)
+            return;
+        for(int i = 1; i <= height(root); i++)
+            printLevelI(node, i);
+    }
+
+    public void levelOrderTraversalReverse(BTNode<T> node){
+        if(node == null)
+            return;
+        for(int i = height(root); i > 0 ; i--)
+            printLevelI(node, i);
+    }
+
+    public void printLevelI(BTNode<T> node, int i){
+        if(node == null)
+            return;
+        if(i == 1)
+            System.out.print(node.getData() + " ");
+        else if(i > 1){
+            printLevelI(node.getLeft(), i - 1);
+            printLevelI(node.getRight(), i - 1);
+        }
     }
 
     public static void main(String[] args){
@@ -233,10 +266,10 @@ public class BinaryTree<T>{
 
 
         obj.print2D();
-        System.out.println(obj.levelOrderTraversal(obj.getRoot()));
-        System.out.println("Tree size: " + obj.treeSizeIterative(obj.getRoot()));
+        obj.levelOrderTraversalReverse(obj.getRoot());
+//        System.out.println(obj.levelOrderTraversal(obj.getRoot()));
+        System.out.println("\nTree height: " + obj.height(obj.getRoot()));
 
-//        obj.postOrderTraversalRecursive(obj.getRoot());
     }
 
 }
