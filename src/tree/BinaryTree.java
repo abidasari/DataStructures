@@ -272,6 +272,16 @@ public class BinaryTree<T>{
         }
     }
 
+    public int minimumDepth(BTNode<T> node){
+        if(node == null)
+            return 0;
+        if(node.getLeft() == null && node.getRight() == null)
+            return 1;
+        int leftDepth = minimumDepth(node.getLeft()), rightDepth = minimumDepth(node.getRight());
+        return 1 + (( leftDepth < rightDepth ) ? leftDepth : rightDepth);
+
+    }
+
     public static void main(String[] args){
         BinaryTree<Integer> obj = new BinaryTree<>();
 
@@ -286,12 +296,13 @@ public class BinaryTree<T>{
         obj.getRoot().getLeft().getRight().setLeft(new BTNode<Integer>(8));
         obj.getRoot().getRight().getLeft().setRight(new BTNode<Integer>(9));
         obj.getRoot().getLeft().getRight().getLeft().setRight(new BTNode<Integer>(11));
+        obj.getRoot().getLeft().setLeft(null);
 
 
         obj.print2D();
         obj.levelOrderTraversalReverse(obj.getRoot());
 //        System.out.println(obj.levelOrderTraversal(obj.getRoot()));
-        System.out.println("\nTree height: " + obj.heightIterative(obj.getRoot()));
+        System.out.println("\nTree minimum depth: " + obj.minimumDepth(obj.getRoot()));
 
     }
 
