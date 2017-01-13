@@ -6,6 +6,9 @@ package tree;
 
 import nodes.BTNode;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 
 public class SumOfAllElements<T extends Number>{
 
@@ -15,6 +18,24 @@ public class SumOfAllElements<T extends Number>{
         if(root.getLeft() == null && root.getRight() == null)
             return root.getData().intValue();
         return root.getData().intValue() + sumOfAllElements(root.getLeft()) + sumOfAllElements(root.getRight());
+    }
+
+    public int sumOfAllElementsIterative(BTNode<T> root){
+        if(root == null)
+            return 0;
+        Queue<BTNode<T>> queue = new LinkedList<>();
+        BTNode<T> curr = null;
+        queue.offer(root);
+        int sum = 0;
+        while(!queue.isEmpty()){
+            curr = queue.poll();
+            sum += curr.getData().intValue();
+            if(curr.getLeft() != null)
+                queue.offer(curr.getLeft());
+            if(curr.getRight() != null)
+                queue.offer(curr.getRight());
+        }
+        return sum;
     }
 
     public static void main(String[] args){
@@ -34,6 +55,6 @@ public class SumOfAllElements<T extends Number>{
         tree.print2D();
 
 //        obj.allPathsUtil(tree.getRoot());
-        System.out.println("Sum of all elements : " + obj.sumOfAllElements(tree.getRoot()));
+        System.out.println("Sum of all elements : " + obj.sumOfAllElementsIterative(tree.getRoot()));
     }
 }
