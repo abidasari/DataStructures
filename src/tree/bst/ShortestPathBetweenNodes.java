@@ -57,7 +57,7 @@ public class ShortestPathBetweenNodes{
 //            System.out.println("========================================");
 //            tree.print2D();
 
-    System.out.println("LCA : " + obj.lengthOfShortestPathBetweenNodes(tree.getRoot(), 10git , 7));
+    System.out.println("LCA : " + obj.lengthOfShortestPathBetweenNodes(tree.getRoot(), 10 , 7));
 
     }
 }
