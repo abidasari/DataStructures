@@ -51,6 +51,94 @@ public class BinarySearchTree{
         }
     }
 
+    public boolean findKeyIterative(int data){
+        if(root == null)
+            return false;
+        BSTNode temp = root;
+        while(temp !=  null){
+            if(temp.getData() == data)
+                return true;
+            else if(temp.getData() < data)
+                temp = temp.getRight();
+            else
+                temp = temp.getLeft();
+        }
+        return false;
+    }
+
+    public int findMinimumElementIterative(){
+        if(root == null)
+            return Integer.MIN_VALUE;
+        else{
+            BSTNode temp = root;
+            while(temp.getLeft() != null)
+                temp = temp.getLeft();
+            return temp.getData();
+        }
+    }
+
+    public int findMinimumElementRecursive(){
+        return findMinimumElementRecursive(root).getData();
+    }
+
+    public BSTNode findMinimumElementRecursive(BSTNode node){
+        if(node == null)
+            return node;
+        else {
+            if(node.getLeft() == null)
+                return node;
+            else return findMinimumElementRecursive(node.getLeft());
+        }
+    }
+
+    public int findMaxElementIterative(){
+        if(root == null)
+            return Integer.MIN_VALUE;
+        else{
+            BSTNode temp = root;
+            while(temp.getRight() != null)
+                temp = temp.getRight();
+            return temp.getData();
+        }
+    }
+
+    public int findMaxElementRecursive(){
+        return findMaxElementRecursive(root).getData();
+    }
+
+    public BSTNode findMaxElementRecursive(BSTNode node){
+        if(node == null)
+            return node;
+        else{
+            if(node.getRight() != null)
+                return findMaxElementRecursive(node.getRight());
+            else
+                return node;
+        }
+    }
+
+    public void delete(int k){
+        delete(root, k);
+    }
+
+    public BSTNode delete(BSTNode node, int k){
+        if(node == null)
+            return node;
+        if(node.getData() < k)
+            node.setRight(delete(node.getRight(), k));
+        else if(node.getData() > k)
+            node.setLeft(delete(node.getLeft(), k));
+        else{
+            if(node.getLeft() == null)
+                return node.getRight();
+            else if(node.getRight() == null)
+                return node.getLeft();
+            node.setData(findMaxElementRecursive(node.getLeft()).getData());
+            node.setLeft(delete(node.getLeft(), node.getData()));
+        }
+        return node;
+    }
+
     public void print2DUtil(BSTNode root, int space)
     {
         if (root == null)
@@ -83,9 +171,14 @@ public class BinarySearchTree{
         tree.insert(9);
         tree.insert(7);
         tree.insert(10);
-        tree.insert(0);
-        System.out.println(tree.findKeyRecursive(10));
+        tree.insert(1);
 
         tree.print2D();
+        tree.delete(9);
+        System.out.println("========================================");
+        tree.print2D();
+
+//        System.out.println("In Order Predecessor of root: " + tree.inOrderPredecessor(tree.getRoot()).getData());
+
     }
 }
