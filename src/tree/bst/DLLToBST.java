@@ -11,6 +11,8 @@ import linkedlist.DoubleLinkedList;
 
 public class DLLToBST {
 
+    public static DoubleLinkedList<Integer> list = new DoubleLinkedList<>();
+
     public BSTNode dllToBST(DoubleLinkedList list){
         if(list == null)
             return null;
@@ -19,6 +21,7 @@ public class DLLToBST {
     }
 
     public BSTNode constructBST(DLLNode node, int start, int end){
+        System.out.println(list + " node: " + node.getData() + " start: " + start + " end: " + end);
         if(start > end)
             return null;
         int mid = start + (end - start) / 2;
@@ -35,7 +38,6 @@ public class DLLToBST {
 
     public static void main(String[] args){
         DLLToBST obj = new DLLToBST();
-        DoubleLinkedList<Integer> list = new DoubleLinkedList<>();
         BinarySearchTree tree = new BinarySearchTree();
 
         list.insertAtEnd(1);
@@ -49,5 +51,7 @@ public class DLLToBST {
         System.out.println("-----------------------------");
         tree.setRoot(obj.dllToBST(list));
         tree.print2D();
+        System.out.println(list);
+
     }
 }

@@ -8,19 +8,6 @@ import nodes.BSTNode;
 
 public class ArrayToBST{
 
-    public void printDLL(BSTNode head){
-        if(head == null)
-            return;
-        String out = "[ " + head.getData() + " ";
-        BSTNode temp = head.getRight();
-        while(temp != head && temp != null) {
-            out += temp.getData() + " ";
-            temp = temp.getRight();
-        }
-        out += "]";
-        System.out.print(out);
-    }
-
     public BSTNode arrayToBST(int[] input, int left, int right){ // input is sorted
         if(left > right)
             return null;
