@@ -107,7 +107,6 @@ public class AVLTree{
         tree.setRoot(tree.insert(tree.getRoot(), 8));
         tree.setRoot(tree.insert(tree.getRoot(), 5));
         tree.setRoot(tree.insert(tree.getRoot(), 6));
-git
 
         tree.print2D();
     }
