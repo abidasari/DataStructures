@@ -56,14 +56,14 @@ public class Heap{
             max = left;
         else
             max = i;
-        if(right != -1 && array[right] > array[i])
+        if(right != -1 && array[right] > array[max])
             max = right;
         if(max != i){
             temp = array[max];
             array[max] = array[i];
             array[i] = temp;
+            heapify(max);
         }
-        heapify(max);
     }
 
     public int deleteMax(){
