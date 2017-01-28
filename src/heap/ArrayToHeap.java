@@ -13,7 +13,6 @@ public class ArrayToHeap{
             return;
         while(length > heap.getHeapCapacity())
             heap.resizeHeap();
-//        System.arraycopy(in, 0, heap.getArray(), 0, length);
         for(int i = 0; i < length; i++)
             heap.getArray()[i] = in[i];
         heap.setHeapSize(length);
@@ -25,8 +24,11 @@ public class ArrayToHeap{
     public static void main(String[] args) {
         ArrayToHeap obj = new ArrayToHeap();
         Heap heap = new Heap(20, 1);
-        int[] in = {1,3,5,2,10,7,8,11,14,12,21,18};
+        int[] in = {1,3,5,2,10,7,8,11};
         obj.buildHeap(heap, in, in.length);
         System.out.println(heap);
+        for(int i: heap.getArray())
+            System.out.print(i + " ");
+
     }
 }
