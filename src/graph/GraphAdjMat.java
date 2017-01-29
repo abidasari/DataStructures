@@ -10,6 +10,22 @@ public class GraphAdjMat {
     private boolean[][] adjMatrix;
     private int vertexCount;
 
+    public boolean[][] getAdjMatrix() {
+        return adjMatrix;
+    }
+
+    public void setAdjMatrix(boolean[][] adjMatrix) {
+        this.adjMatrix = adjMatrix;
+    }
+
+    public int getVertexCount() {
+        return vertexCount;
+    }
+
+    public void setVertexCount(int vertexCount) {
+        this.vertexCount = vertexCount;
+    }
+
     public GraphAdjMat(int vertexCount) {
         this.vertexCount = vertexCount;
         adjMatrix = new boolean[vertexCount][vertexCount];

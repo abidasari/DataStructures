@@ -15,6 +15,30 @@ public class GraphAdjList<T extends Number>{
     private SingleLinkList<Integer>[] edges;
     private int vertexCount;
 
+    public ArrayList<Integer> getVertices() {
+        return vertices;
+    }
+
+    public void setVertices(ArrayList<Integer> vertices) {
+        this.vertices = vertices;
+    }
+
+    public SingleLinkList<Integer>[] getEdges() {
+        return edges;
+    }
+
+    public void setEdges(SingleLinkList<Integer>[] edges) {
+        this.edges = edges;
+    }
+
+    public int getVertexCount() {
+        return vertexCount;
+    }
+
+    public void setVertexCount(int vertexCount) {
+        this.vertexCount = vertexCount;
+    }
+
     public GraphAdjList(int vertexCount) {
         this.vertexCount = vertexCount;
         vertices = new ArrayList<>();
