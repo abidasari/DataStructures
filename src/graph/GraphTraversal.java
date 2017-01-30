@@ -49,6 +49,29 @@ public class GraphTraversal{
         }
     }
 
+    public void bfsTraversal(Graph<Integer> graph){
+        if(graph == null)
+            return;
+        Set<Vertex<Integer>> visited = new HashSet<>();
+        Queue<Vertex<Integer>> queue = new LinkedList<>();
+        for(Vertex<Integer> vertex: graph.getAllVertices()){
+            if(visited.contains(vertex))
+                continue;
+            queue.offer(vertex);
+            visited.add(vertex);
+            while(!queue.isEmpty()){
+                Vertex<Integer> curr = queue.poll();
+                System.out.print(curr.getId() + " ");
+                for(Vertex<Integer> v: curr.getAdjVertices())
+                    if(!visited.contains(v)) {
+                        queue.offer(v);
+                        visited.add(v);
+                    }
+            }
+            System.out.println();
+        }
+    }
+
     public static void main(String args[]){
         Graph<Integer> graph = new Graph<>(true);
         GraphTraversal obj = new GraphTraversal();
@@ -63,6 +86,6 @@ public class GraphTraversal{
 //        graph.addEdge(5,3);
 
         System.out.print(graph + "\n==================\n");
-        obj.dfsIterative(graph);
+        obj.bfsTraversal(graph);
     }
 }
