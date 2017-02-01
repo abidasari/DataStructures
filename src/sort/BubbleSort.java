@@ -47,7 +47,7 @@ public class BubbleSort{
         BubbleSort obj = new BubbleSort();
         int[] in = {5,3,8,6,10,0,3};
         obj.printArray(in);
-        obj.sortBettergit (in);
+        obj.sortBetter(in);
         obj.printArray(in);
     }
 }
