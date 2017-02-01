@@ -38,5 +38,4 @@ public class MergeKLists<T extends Number >{
         }
         return head;
     }
-
 }
