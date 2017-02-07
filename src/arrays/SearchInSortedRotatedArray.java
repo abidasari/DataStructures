@@ -68,6 +68,25 @@ public class SearchInSortedRotatedArray{
         return -1;
     }
 
+    public int singlePassSearch(int[] A, int left, int right, int data){
+        if(left > right)
+            return -1;
+        int mid = left + (right - left) / 2;
+        if(A[mid] == data)
+            return mid;
+        else if(A[mid] > A[left]) {
+            if(data > A[mid])
+                return singlePassSearch(A, mid+1, right, data);
+            else
+                return singlePassSearch(A, left, mid - 1, data);
+        } else {
+            if(data > A[mid])
+                return singlePassSearch(A, mid + 1, right, data);
+            else
+                return singlePassSearch(A, left, mid - 1, data);
+        }
+    }
+
     public void printArray(int[] in, int len){
         if(in == null)
             return;
@@ -82,6 +101,6 @@ public class SearchInSortedRotatedArray{
         SearchInSortedRotatedArray obj = new SearchInSortedRotatedArray();
         int[] in = {6,7,8,9,1,2,3,4,5};
         obj.printArray(in, in.length);
-        obj.search(in, 3);
+        System.out.println(obj.singlePassSearch(in, 0, in.length - 1, 3));
     }
 }
