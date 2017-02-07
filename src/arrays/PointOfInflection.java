@@ -34,6 +34,45 @@ public class PointOfInflection{
         }
     }
 
+    public int bitonicSearch(int[] A, int left, int right, int data){
+        if(left > right)
+            return -1;
+        if(left == right)
+            return left;
+        if(left == right - 1)
+            return (A[left] > A[right]? left: right);
+        else{
+            int mid = left + (right - left)/2;
+            if(A[mid] == data)
+                return mid;
+            else if(A[mid] < A[mid + 1] && A[mid] > A[mid - 1]){
+                if(A[mid] > data){
+                    if(A[mid] < A[right])
+                        return bitonicSearch(A, left, mid - 1, data);
+                    else {
+                        int i = bitonicSearch(A, left, mid - 1, data);
+                        int j = bitonicSearch(A, mid + 1, right, data);
+                        return(i >= 0 ? i : j);
+                    }
+                }
+                else
+                    return bitonicSearch(A, mid + 1, right, data);
+            } else {
+                if(A[mid] > data){
+                    if(A[mid] < A[left])
+                        return bitonicSearch(A, mid + 1, right, data);
+                    else {
+                        int i = bitonicSearch(A, left, mid - 1, data);
+                        int j = bitonicSearch(A, mid + 1, right, data);
+                        return(i >= 0 ? i : j);
+                    }
+                }
+                else
+                    return bitonicSearch(A, left, mid - 1, data);
+            }
+        }
+    }
+
     public void printArray(int[] in, int len){
         if(in == null)
             return;
@@ -46,8 +85,9 @@ public class PointOfInflection{
 
     public static void main(String[] args){
         PointOfInflection obj = new PointOfInflection();
-        int[] in = {-7,-3,-1,3,3,4,2,0};
+        int[] in = {-7,-3,-1,1,3,4,2,-6};
         obj.printArray(in, in.length);
         obj.pointOfInflection(in);
+        System.out.println(obj.bitonicSearch(in, 0, in.length - 1, 0));
     }
 }
