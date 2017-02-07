@@ -23,6 +23,32 @@ public class ThreeColorSort{
         }
     }
 
+    public void sortSinglePass(int[] in){
+        int low = 0, high = in.length - 1, i = 0;
+        while(i < in.length && low < high){
+            switch (in[i]) {
+                case 1:
+//                    swap(in, low, i);
+                    low++;
+                    i++;
+                    break;
+                case 3:
+                    swap(in, high, i);
+                    high--;
+                    break;
+                case 2:
+                    i++;
+                    break;
+            }
+        }
+    }
+
+    public void swap(int[] A, int i, int j){
+        int temp = A[i];
+        A[i] = A[j];
+        A[j] = temp;
+    }
+
     public void printArray(int[] in){
         if(in == null)
             return;
