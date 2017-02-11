@@ -1,6 +1,12 @@
 package hashtable;
 
+/**
+ * @author adasari
+ */
+
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class RemoveDuplicates {
 	
@@ -30,13 +36,32 @@ public class RemoveDuplicates {
 		while(tail < c.length - 1)
 			c[++tail] = '\0';
 	}
+	
+	public void removeDuplicateMap(String str){
+		if(str.length() < 2)
+			return;
+		char[] s = str.toCharArray();
+		Map<Character, Integer> map = new HashMap<>();
+		int  last = 0;
+		for(int i = 0; i < s.length; i++){
+			if(!map.containsKey(s[i])){
+				map.put(s[i], 1);
+				s[last++] = s[i];
+			} else {
+				continue;
+			}
+		}
+		while(last < str.length() - 1)
+			s[last++] = '\0';
+		System.out.println(s);
+	}
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		char c[] = {'a', 'b', 'a', 'b', 'c', 'd', 'd', 'e'};
 		RemoveDuplicates obj = new RemoveDuplicates();
 		obj.removeDuplicates(c);
-		System.out.println(obj.removeDuplicates(new String(c)));
+		obj.removeDuplicateMap(new String(c));
 		
 	}
 
